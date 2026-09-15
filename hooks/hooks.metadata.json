@@ -50,7 +50,7 @@
       {
         "id": "pre:edit:tcas",
         "description": "TCAS pre-edit advisory hook: transmit, hold, wait, or pause overlapping edits",
-        "fingerprint": "65fcb4a6a54a"
+        "fingerprint": "7ecb35ef8d87"
       }
     ],
     "PreCompact": [
