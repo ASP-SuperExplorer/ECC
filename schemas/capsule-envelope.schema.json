@@ -75,7 +75,6 @@
         "summary": { "type": "string" },
         "event_id": { "type": "string" },
         "session": { "type": "string" },
-        "tool": { "type": "string" },
         "file": { "type": "string" },
         "maneuver": { "type": "string" },
         "blocked": { "type": "integer" },

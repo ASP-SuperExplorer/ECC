@@ -65,7 +65,6 @@ const PAYLOAD_TYPES = Object.freeze({
   summary: 'string',
   event_id: 'string',
   session: 'string',
-  tool: 'string',
   file: 'string',
   maneuver: 'string',
   blocked: 'integer',
