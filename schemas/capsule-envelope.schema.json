@@ -72,7 +72,15 @@
         "hits": { "type": "integer" },
         "branch_id": { "type": "string" },
         "parent_branch_id": { "type": "string" },
-        "summary": { "type": "string" }
+        "summary": { "type": "string" },
+        "event_id": { "type": "string" },
+        "session": { "type": "string" },
+        "tool": { "type": "string" },
+        "file": { "type": "string" },
+        "maneuver": { "type": "string" },
+        "blocked": { "type": "integer" },
+        "risk": { "type": "number" },
+        "threshold": { "type": "string" }
       }
     }
   }

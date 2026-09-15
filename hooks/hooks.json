@@ -87,6 +87,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/run-with-flags.js pre:edit:tcas scripts/hooks/tcas-pre-edit.js standard,strict",
+            "timeout": 1
+          }
+        ]
       }
     ],
     "PreCompact": [
