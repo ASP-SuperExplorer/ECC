@@ -136,6 +136,28 @@ function getGitRepoName() {
 }
 
 /**
+ * Get the repository identity for a directory: the canonical (real) path of
+ * the repository's common git dir, which is the main worktree's .git
+ * directory. Every linked worktree of one repository resolves to the same
+ * identity, while unrelated repositories never share one.
+ *
+ * @param {string} [dir] - Directory to resolve from (defaults to process.cwd()).
+ * @returns {string|null} The canonical common git dir, or null when dir is
+ *   not inside a git repository or does not exist.
+ */
+function getRepoIdentity(dir) {
+  const target = dir || process.cwd();
+  const result = runCommand('git rev-parse --git-common-dir', { cwd: target });
+  if (!result.success || !result.output) return null;
+  const commonDir = path.resolve(target, result.output);
+  try {
+    return fs.realpathSync(commonDir);
+  } catch {
+    return commonDir;
+  }
+}
+
+/**
  * Get project name from git repo or current directory
  */
 function getProjectName() {
@@ -642,6 +664,7 @@ module.exports = {
   sanitizeSessionId,
   getSessionIdShort,
   getGitRepoName,
+  getRepoIdentity,
   getProjectName,
 
   // File operations
