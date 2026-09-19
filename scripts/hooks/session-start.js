@@ -15,6 +15,7 @@ const {
   getLearnedSkillsDir,
   getProjectName,
   getRepoIdentity,
+  sameRepoIdentity,
   findFiles,
   ensureDir,
   readFile,
@@ -325,10 +326,11 @@ function selectMatchingSession(sessions, cwd, currentProject) {
     // eligible in worktree B only when both resolve to the same common git
     // dir. Unrelated repositories never share.
     if (!repoMatch && currentRepoId && (sessionRepo || sessionWorktree)) {
-      const sessionRepoId = sessionRepo
-        ? normalizePath(sessionRepo)
-        : repoIdOfRecordedWorktree(sessionWorktree);
-      if (sessionRepoId && sessionRepoId === currentRepoId) {
+      // The recorded Repo field may carry a different path form than the
+      // live lookup (8.3 short names on Windows runners, case, separators),
+      // so compare with filesystem-identity fallback rather than ===.
+      const sessionRepoId = sessionRepo || repoIdOfRecordedWorktree(sessionWorktree);
+      if (sessionRepoId && sameRepoIdentity(sessionRepoId, currentRepoId)) {
         repoMatch = session;
         repoMatchContent = content;
       }
